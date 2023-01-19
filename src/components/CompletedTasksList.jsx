@@ -1,11 +1,11 @@
-import React from 'react';
-import classes from './CompletedTasksList.module.css';
-import CompletedTaskItem from './CompletedTaskItem';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import React from 'react'
+import classes from './CompletedTasksList.module.scss'
+import CompletedTaskItem from './CompletedTaskItem'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 const TasksList = ({ tasksList, remove }) => {
 	return (
-		<div className={classes.Tasks}>
+		<div className={classes.tasks}>
 			<TransitionGroup>
 				{tasksList.map(completedTask => (
 					<CSSTransition
@@ -23,7 +23,7 @@ const TasksList = ({ tasksList, remove }) => {
 				))}
 			</TransitionGroup>
 		</div>
-	);
-};
+	)
+}
 
-export default TasksList;
+export default TasksList

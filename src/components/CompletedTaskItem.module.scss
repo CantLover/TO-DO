@@ -1,0 +1,15 @@
+.compTask {
+	@apply h-14 px-2 mb-4 rounded-xl flex align-middle text-white backdrop-blur-xl items-center px-4 bg-white/20 relative;
+
+	&__time {
+		@apply px-2 mr-4 tracking-wide font-bold;
+	}
+
+	&__title {
+		@apply tracking-wide;
+	}
+
+	&__complete {
+		@apply w-6 h-6 border-4 border-green-500 rounded-full transition-all hover:border-red-500 active:border-red-700 absolute right-6;
+	}
+}

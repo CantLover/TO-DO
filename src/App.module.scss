@@ -1,0 +1,44 @@
+.app {
+	@apply min-h-screen bg-slate-800 text-stone-200;
+	.body {
+		@apply flex flex-col items-center;
+
+		> svg {
+			@apply stroke-white transition-all cursor-pointer fixed right-2 top-2 w-10 h-10 z-40 rounded-full transition-all hover:shadow-inner hover:stroke-gray-100 hover:scale-110 active:scale-100;
+		}
+		.time {
+			@apply tracking-[.4em] fixed right-16 top-4 rounded-full;
+		}
+
+		.header {
+			@apply fixed w-full p-2 border-b border-white/10 flex;
+
+			> h1 {
+				font: italic small-caps bold 16px cursive;
+				@apply text-4xl text-slate-300 font-light ml-4;
+			}
+		}
+
+		.wrapper {
+			@apply mt-40 max-w-7xl w-11/12 flex flex-col items-center;
+		}
+	}
+
+	.createBody {
+		&__inputs {
+			@apply flex flex-col text-stone-200 items-center;
+		}
+		input {
+			@apply rounded-full bg-transparent border border-slate-600 outline-none mb-4;
+		}
+		&__time {
+			@apply w-28 py-1 px-3;
+		}
+		&__title {
+			@apply w-80 py-2 px-4;
+		}
+		&__button {
+			@apply px-4 py-2 border border-slate-600 w-full rounded-full  transition-all hover:bg-white/10 hover:text-stone-400;
+		}
+	}
+}

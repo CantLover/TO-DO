@@ -1,17 +1,17 @@
-import React from 'react';
-import classes from './CompletedTaskItem.module.css';
+import React from 'react'
+import classes from './CompletedTaskItem.module.scss'
 
 const TaskItem = props => {
 	return (
-		<div className={classes.Tasks__item}>
-			<span className={classes.Tasks__time}>{props.time}</span>
-			<div className={classes.Tasks__title}>{props.title}</div>
+		<div className={classes.compTask}>
+			<span className={classes.compTask__time}>{props.time}</span>
+			<div className={classes.compTask__title}>{props.title}</div>
 			<button
-				className={classes.Tasks__complete}
+				className={classes.compTask__complete}
 				onClick={() => props.remove(props.task)}
-			>x</button>
+			></button>
 		</div>
-	);
-};
+	)
+}
 
-export default TaskItem;
+export default TaskItem

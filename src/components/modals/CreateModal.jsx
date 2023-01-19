@@ -1,14 +1,20 @@
 import React from 'react'
-import './CreateModal.css'
+import './CreateModal.scss'
 
-const CreateModal = ({active, setActive, children}) => {
-  return (
-	<div className={active ? "Modal active" : "Modal"} onClick={() => setActive(false)}>
-		<div className={active ? "Modal__content active" : "Modal__content"} onClick={e => e.stopPropagation()}>
-			{children}
+const CreateModal = ({ active, setActive, children }) => {
+	return (
+		<div
+			className={active ? 'modal active' : 'modal'}
+			onClick={() => setActive(false)}
+		>
+			<div
+				className={active ? 'modal__content active' : 'modal__content'}
+				onClick={e => e.stopPropagation()}
+			>
+				{children}
+			</div>
 		</div>
-	</div>
-  )
+	)
 }
 
 export default CreateModal

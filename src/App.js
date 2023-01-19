@@ -1,99 +1,100 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import './App.css';
-import CreateModal from './components/modals/CreateModal';
-import TasksList from './components/TasksList';
-import ComplitedTasksList from './components/CompletedTasksList';
+import React, { useState, useMemo, useEffect } from 'react'
+//import './App.scss'
+import style from './App.module.scss'
+import CreateModal from './components/modals/CreateModal'
+import TasksList from './components/TasksList'
+import ComplitedTasksList from './components/CompletedTasksList'
 
 function App() {
-	const [tasks, setTasks] = useState([]);
-	const [tasksCompleted, setTasksCompleted] = useState([]);
-	const [task, setTask] = useState({ time: '00:00', title: '' });
-	const [modalActive, setModalActive] = useState(false);
+	const [tasks, setTasks] = useState([])
+	const [tasksCompleted, setTasksCompleted] = useState([])
+	const [task, setTask] = useState({ time: '00:00', title: '' })
+	const [modalActive, setModalActive] = useState(false)
 
 	const addNewTask = e => {
-		e.preventDefault();
-		setTasks([...tasks, { ...task, id: task.title }]);
-		setModalActive(false);
-		setTask({ time: '00:00', title: '' });
-	};
+		e.preventDefault()
+		setTasks([...tasks, { ...task, id: task.title }])
+		setModalActive(false)
+		setTask({ time: '00:00', title: '' })
+	}
 
 	const sortedTasks = useMemo(() => {
-		return [...tasks].sort((a, b) => a['time'].localeCompare(b['time']));
-	}, [tasks]);
+		return [...tasks].sort((a, b) => a['time'].localeCompare(b['time']))
+	}, [tasks])
 	const sortedCompletedTasks = useMemo(() => {
 		return [...tasksCompleted].sort((a, b) =>
 			a['time'].localeCompare(b['time'])
-		);
-	}, [tasksCompleted]);
+		)
+	}, [tasksCompleted])
 
 	const completePost = task => {
-		setTasks(tasks.filter(t => t.title !== task.title));
+		setTasks(tasks.filter(t => t.title !== task.title))
 		setTasksCompleted([
 			...tasksCompleted,
 			{ time: task.time, title: task.title },
-		]);
-	};
+		])
+	}
 
 	const removeCompletedPost = completedTask => {
 		setTasksCompleted(
 			tasksCompleted.filter(t => t.title !== completedTask.title)
-		);
-	};
+		)
+	}
 
 	//Time
-	const [time, setTime] = useState(new Date().toLocaleTimeString());
+	const [time, setTime] = useState(new Date().toLocaleTimeString())
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setTime(new Date().toLocaleTimeString());
-		}, 1000);
-		return () => clearInterval(interval);
-	}, []);
+			setTime(new Date().toLocaleTimeString())
+		}, 1000)
+		return () => clearInterval(interval)
+	}, [])
 
 	return (
-		<div className='App'>
-			<div className='Body'>
-				<div className='Title'>
-					<h1>TODO</h1>
-				</div>
-				<div className='WrapperContent'>
-					<div className='Bottoms'>
-						<div className='Bottoms__time'>{time}</div>
-						<button
-							className='Bottoms__create'
-							onClick={() => setModalActive(true)}
-						>
-							+
-						</button>
-					</div>
+		<div className={style.app}>
+			<div className={style.body}>
+				<svg
+					className={style.createBottom}
+					onClick={() => setModalActive(true)}
+					xmlns='http://www.w3.org/2000/svg'
+					fill='none'
+					viewBox='0 0 24 24'
+					stroke-width='1.5'
+					stroke='currentColor'
+					class='w-10 h-10'
+				>
+					<path
+						stroke-linecap='round'
+						stroke-linejoin='round'
+						d='M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z'
+					/>
+				</svg>
+				<div className={style.time}>{time}</div>
 
-					{tasks.length ? (
-						<TasksList tasksList={sortedTasks} complete={completePost} />
-					) : (
-						<div className='Empty'>Empty</div>
-					)}
+				<header className={style.header}>
+					<h1>ToDo</h1>
+				</header>
 
-					<hr className='MainLine' />
+				<div className={style.wrapper}>
+					<TasksList tasksList={sortedTasks} complete={completePost} />
 
-					{tasksCompleted.length ? (
-						<ComplitedTasksList
-							tasksList={sortedCompletedTasks}
-							remove={removeCompletedPost}
-						/>
-					) : (
-						<div className='EmptyCompleted'>No completed tasks</div>
-					)}
+					<ComplitedTasksList
+						tasksList={sortedCompletedTasks}
+						remove={removeCompletedPost}
+					/>
 				</div>
 			</div>
 
+			{/* MODAL WINDOW */}
 			<CreateModal active={modalActive} setActive={setModalActive}>
-				<div className='ModalBody'>
+				<div className={style.createBody}>
 					<form>
-						<div className='ModalBody__inputs'>
+						<div className={style.createBody__inputs}>
 							<input
 								type='time'
 								value={task.time}
 								placeholder='Time'
-								className='ModalBody__time'
+								className={style.createBody__time}
 								onChange={e => setTask({ ...task, time: e.target.value })}
 							/>
 							<input
@@ -101,18 +102,18 @@ function App() {
 								type='text'
 								value={task.title}
 								placeholder='Task'
-								className='ModalBody__title'
+								className={style.createBody__title}
 								onChange={e => setTask({ ...task, title: e.target.value })}
 							/>
 						</div>
-						<button className='ModalBody__button' onClick={addNewTask}>
+						<button className={style.createBody__button} onClick={addNewTask}>
 							CREATE
 						</button>
 					</form>
 				</div>
 			</CreateModal>
 		</div>
-	);
+	)
 }
 
-export default App;
+export default App
