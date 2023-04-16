@@ -6,8 +6,8 @@ import TasksList from './components/TasksList'
 import ComplitedTasksList from './components/CompletedTasksList'
 
 function App() {
-	const [tasks, setTasks] = useState([])
-	const [tasksCompleted, setTasksCompleted] = useState([])
+	const [tasks, setTasks] = useState([{ time: '06:00', title: 'Wake up' }, { time: '07:30', title: 'Take a dinner' }, { time: '08:00', title: 'Learn React' }])
+	const [tasksCompleted, setTasksCompleted] = useState([{ time: '10:00', title: 'Complete homework' }, { time: '11:25', title: 'Search job' }])
 	const [task, setTask] = useState({ time: '00:00', title: '' })
 	const [modalActive, setModalActive] = useState(false)
 
